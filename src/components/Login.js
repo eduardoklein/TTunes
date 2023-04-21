@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 
 class Login extends React.Component {
@@ -47,13 +47,6 @@ class Login extends React.Component {
     }
   };
 
-  handleCarregando = () => {
-    const { carregando } = this.state;
-    if (carregando) {
-      return <div>Carregando...</div>;
-    }
-  };
-
   render() {
     const { buttonDisabled, carregando } = this.state;
     return (
@@ -82,5 +75,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.objectOf(PropTypes.object()).isRequired,
+};
+
+// https://github.com/jsx-eslint/eslint-plugin-react/issues/2079
 
 export default Login;

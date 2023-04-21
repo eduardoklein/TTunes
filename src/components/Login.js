@@ -77,7 +77,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.objectOf(PropTypes.object()).isRequired,
+  history: PropTypes.string.isRequired,
 };
 
 // https://github.com/jsx-eslint/eslint-plugin-react/issues/2079

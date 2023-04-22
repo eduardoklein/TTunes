@@ -1,12 +1,32 @@
 import React from 'react';
 import PropType from 'prop-types';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      carregando: false,
+    };
+  }
+
+  handleOnClick = async () => {
+    const { album } = this.props;
+    this.setState(() => ({
+      carregando: true,
+    }));
+    await addSong(album);
+    this.setState(() => ({
+      carregando: false,
+    }));
+  };
+
   render() {
     const { album } = this.props;
-    console.log(album);
+    const { carregando } = this.state;
     return (
       <div>
+        {carregando && <p>Carregando...</p>}
         { album.map((music, index) => (
           index === 0
             ? null
@@ -24,6 +44,15 @@ class MusicCard extends React.Component {
                   <code>audio</code>
                   .
                 </audio>
+                <label
+                  data-testid={ `checkbox-music-${music.trackId}` }
+                >
+                  Favorita
+                  <input
+                    type="checkbox"
+                    onClick={ this.handleOnClick }
+                  />
+                </label>
               </div>
             ))) }
       </div>

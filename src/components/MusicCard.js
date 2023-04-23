@@ -9,7 +9,6 @@ class MusicCard extends React.Component {
       carregando: false,
       favorites: [],
     };
-    console.log(this.state.favorites);
   }
 
   async componentDidMount() {

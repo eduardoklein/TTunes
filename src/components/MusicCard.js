@@ -1,13 +1,23 @@
 import React from 'react';
 import PropType from 'prop-types';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   constructor() {
     super();
     this.state = {
       carregando: false,
+      favorites: [],
     };
+    console.log(this.state.favorites);
+  }
+
+  async componentDidMount() {
+    const favorites = await getFavoriteSongs();
+    this.setState(() => ({
+      favorites,
+    }));
+    console.log(favorites);
   }
 
   handleOnClick = async () => {
@@ -23,7 +33,10 @@ class MusicCard extends React.Component {
 
   render() {
     const { album } = this.props;
-    const { carregando } = this.state;
+    const { carregando, favorites } = this.state;
+    if (favorites.length === 0) {
+      return <p>Carregando favoritos...</p>;
+    }
     return (
       <div>
         {carregando && <p>Carregando...</p>}
@@ -51,6 +64,7 @@ class MusicCard extends React.Component {
                   <input
                     type="checkbox"
                     onClick={ this.handleOnClick }
+                    checked={ favorites.some((fav) => fav.trackId === music.trackId) }
                   />
                 </label>
               </div>

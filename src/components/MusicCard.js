@@ -16,26 +16,37 @@ class MusicCard extends React.Component {
     this.setState(() => ({
       favorites,
     }));
-    console.log(favorites);
   }
 
-  handleOnClick = async () => {
-    const { album } = this.props;
+  handleClick = async (music) => {
+    const { favorites } = this.state;
+    const isFavorite = favorites.some((fav) => fav.trackId === music.trackId);
+    const newFavorites = isFavorite
+      ? favorites.filter((fav) => fav.trackId !== music.trackId)
+      : [...favorites, music];
+    this.setState({ favorites: newFavorites });
+    this.toggleFavorite(music);
     this.setState(() => ({
       carregando: true,
     }));
-    await addSong(album);
+    await addSong(music);
     this.setState(() => ({
       carregando: false,
     }));
   };
 
+  toggleFavorite = (music) => {
+    const { favorites } = this.state;
+    const isFavorite = favorites.some((fav) => fav.trackId === music.trackId);
+    const newFavorites = isFavorite
+      ? favorites.filter((fav) => fav.trackId !== music.trackId)
+      : [...favorites, music];
+    this.setState({ favorites: newFavorites });
+  };
+
   render() {
     const { album } = this.props;
     const { carregando, favorites } = this.state;
-    if (favorites.length === 0) {
-      return <p>Carregando favoritos...</p>;
-    }
     return (
       <div>
         {carregando && <p>Carregando...</p>}
@@ -62,7 +73,7 @@ class MusicCard extends React.Component {
                   Favorita
                   <input
                     type="checkbox"
-                    onClick={ this.handleOnClick }
+                    onClick={ () => this.handleClick(music) }
                     checked={ favorites.some((fav) => fav.trackId === music.trackId) }
                   />
                 </label>

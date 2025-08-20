@@ -1,10 +1,44 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# TTunes
+
+TTunes é um aplicativo de gerenciamento de músicas desenvolvido para ajudar usuários a organizar, reproduzir e descobrir novas músicas de forma eficiente.
+
+## Funcionalidades
+
+- Gerenciamento de biblioteca musical
+- Criação e edição de playlists
+- Busca e filtragem de músicas
+- Reprodução de áudio
+- Autenticação de usuários
+- Design responsivo
+
+## Tecnologias Utilizadas
+
+- React
+- Node.js
+- Express
+- MongoDB
+- CSS/Styled Components
+
+## Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/yourusername/TTunes.git
+   ```
+2. Instale as dependências:
+   ```bash
+   cd TTunes
+   npm install
+   ```
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm start
+   ```
+
+## Uso
+
+- Cadastre-se ou faça login na sua conta.
+- Adicione músicas à sua biblioteca.
+- Crie e gerencie playlists.
+- Pesquise músicas e artistas.
+- Reproduza músicas diretamente pelo app.
